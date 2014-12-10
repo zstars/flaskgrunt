@@ -18,6 +18,9 @@ module.exports = function (grunt) {
 
   // Configurable paths
   var config = {
+    tpl: '../../templates/',
+    tplindex: '../../templates/appindex.html',
+    dist_tplindex: '../../templates/__dist_appindex.html',
     app: 'app',
     dist: 'dist'
   };
@@ -76,7 +79,8 @@ module.exports = function (grunt) {
           '<%= config.app %>/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
           '.tmp/scripts/{,*/}*.js',
-          '<%= config.app %>/images/{,*/}*'
+          '<%= config.app %>/images/{,*/}*',
+          '../../templates/*.html'
         ]
       }
     },
@@ -203,10 +207,11 @@ module.exports = function (grunt) {
     },
 
     // Automatically inject Bower components into the HTML file
+    // *** Adds the dependencies to both index.html (static) and appindex.html (template), just in case.
     wiredep: {
       app: {
         ignorePath: /^\/|\.\.\//,
-        src: ['<%= config.app %>/index.html'],
+        src: ['<%= config.app %>/index.html', '<%= config.tplindex %>'],
         exclude: ['bower_components/bootstrap/dist/js/bootstrap.js']
       }
     },
@@ -231,9 +236,9 @@ module.exports = function (grunt) {
     // additional tasks can operate on them
     useminPrepare: {
       options: {
-        dest: '<%= config.dist %>'
+        dest: '<%= config.dist %>' // Output all the JS files etc here. (Directory).
       },
-      html: '<%= config.app %>/index.html'
+      html: '<%= config.app %>/index.html' // Find the original scripts here. (File).
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
@@ -335,6 +340,10 @@ module.exports = function (grunt) {
             'styles/fonts/{,*/}*.*'
           ]
         }, {
+          nonull: true,
+          dest: '<%= config.dist %>/appindex.html',
+          src: '<%= config.tplindex %>'
+        }, {
           src: 'node_modules/apache-server-configs/dist/.htaccess',
           dest: '<%= config.dist %>/.htaccess'
         }, {
@@ -434,7 +443,7 @@ module.exports = function (grunt) {
     'copy:dist',
     'rev',
     'usemin',
-    'htmlmin'
+    //'htmlmin'
   ]);
 
   grunt.registerTask('default', [

@@ -1,6 +1,7 @@
-<!doctype html>
-<html class="no-js">
-  <head>
+{% extends "layout.html" %}
+
+
+{% block head %}
     <meta charset="utf-8">
     <title>myapp</title>
     <meta name="description" content="">
@@ -9,15 +10,18 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="ngapps/myapp/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="ngapps/myapp/bower_components/datatables/media/css/jquery.dataTables.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-  </head>
-  <body>
+{% endblock %}
+
+{% block body %}
+
+{{ super() }}
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -35,7 +39,7 @@
 
       <div class="jumbotron">
         <h1>'Allo, 'Allo!</h1>
-        <p class="lead">Alwaysss a pleasure scaffolding your apps.</p>
+        <p class="lead">YEP a pleasure scaffolding your apps.</p>
         <p><a class="btn btn-lg btn-success" href="#">Splendid! <span class="glyphicon glyphicon-ok"></span></a></p>
       </div>
 
@@ -62,10 +66,10 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
-    <script src="bower_components/angular-datatables/dist/angular-datatables.js"></script>
+    <script src="ngapps/myapp/bower_components/jquery/dist/jquery.js"></script>
+    <script src="ngapps/myapp/bower_components/angular/angular.js"></script>
+    <script src="ngapps/myapp/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="ngapps/myapp/bower_components/angular-datatables/dist/angular-datatables.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -104,5 +108,5 @@
          + (location.host || 'localhost').split(':')[0]
          + ':35729/livereload.js?snipver=1" type="text/javascript"><\/script>')
         </script>
-</body>
-</html>
+
+{% endblock %}
